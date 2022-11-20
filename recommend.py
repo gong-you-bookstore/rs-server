@@ -25,8 +25,6 @@ def find_sim_books(U):
     B = userbooks(U)
 
     def sim_idx_with_A(df, isbn):
-
-        print(df[df['isbn'] == isbn]['tit_cluster'])
         n = int(df[df['isbn'] == isbn]['tit_cluster'])
         same_clu_books_df = df[df['tit_cluster'] == n]
         sen = same_clu_books_df['content']
