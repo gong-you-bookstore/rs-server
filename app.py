@@ -7,7 +7,6 @@ app = Flask(__name__)
 
 CORS(app)
 
-
 @app.route('/')
 def root():
     return 'Server is running'
@@ -31,11 +30,11 @@ def recommend_one():
 # 예시: http://127.0.0.1:5000/recommend/multi
 
 
-@app.route('/recommend/multi', methods=['GET', 'POST'])
+@app.route('/recommend/multi', methods=['POST'])
 def recommend_multi():
-    body = request.get_json()
-    book_list = list(map(int, body['data']))
-    result = find_sim_books(book_list)
+    body = json.loads(request.get_data(), encoding='utf-8')
+    body = list(map(int, body))
+    result = find_sim_books(body)
 
     return jsonify({
         'message': 'success',
