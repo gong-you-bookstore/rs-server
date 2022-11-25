@@ -7,16 +7,13 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import random
 
 warnings.filterwarnings(action='ignore')
-
 books = pd.read_csv('./books_mod2.csv', encoding='utf-8')
 books = books.replace({np.nan: 'none'})
 books_df_nax = books.dropna(axis='rows')
 tfidf = TfidfVectorizer(stop_words='english')
-title_vect2 = tfidf.fit_transform(books_df_nax['title'])
 
 
 def find_sim_books(U):
-
     def userbooks(A):
         x = books_df_nax['isbn'].tolist()
         l = len(A)
@@ -27,7 +24,6 @@ def find_sim_books(U):
         l2 = len(BD)
         n = random.randrange(0, l2)
         return BD[n]
-
     B = userbooks(U)
 
     def sim_idx_with_A(df, isbn):
